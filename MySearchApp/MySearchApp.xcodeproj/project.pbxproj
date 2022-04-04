@@ -13,6 +13,7 @@
 		2ACECA5227F9E89D008F202A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACECA5027F9E89D008F202A /* Main.storyboard */; };
 		2ACECA5427F9E89F008F202A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ACECA5327F9E89F008F202A /* Assets.xcassets */; };
 		2ACECA5727F9E89F008F202A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACECA5527F9E89F008F202A /* LaunchScreen.storyboard */; };
+		2ACECA5F27FB49BC008F202A /* ItemSearchResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACECA5E27FB49BC008F202A /* ItemSearchResultSet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2ACECA5327F9E89F008F202A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ACECA5627F9E89F008F202A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ACECA5827F9E89F008F202A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ACECA5E27FB49BC008F202A /* ItemSearchResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchResultSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				2ACECA5327F9E89F008F202A /* Assets.xcassets */,
 				2ACECA5527F9E89F008F202A /* LaunchScreen.storyboard */,
 				2ACECA5827F9E89F008F202A /* Info.plist */,
+				2ACECA5E27FB49BC008F202A /* ItemSearchResultSet.swift */,
 			);
 			path = MySearchApp;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACECA5F27FB49BC008F202A /* ItemSearchResultSet.swift in Sources */,
 				2ACECA4F27F9E89D008F202A /* ViewController.swift in Sources */,
 				2ACECA4B27F9E89D008F202A /* AppDelegate.swift in Sources */,
 				2ACECA4D27F9E89D008F202A /* SceneDelegate.swift in Sources */,
