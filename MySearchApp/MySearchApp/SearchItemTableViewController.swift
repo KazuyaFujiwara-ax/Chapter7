@@ -39,6 +39,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         guard let escapedValue = value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
             return nil
         }
+        return "\(key)=\(escapedValue)"
     }
     
     func createRequestUrl(parameter: [String: String]) -> String {
@@ -65,7 +66,10 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         }
         let request = URLRequest(url: url)
         let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        let task = session.dataTask(with: request) { [weak self] (data, response, error) in
+            guard let self = self else {
+                return
+            }
             guard error == nil else {
                 let alert = UIAlertController(title: "エラー", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 DispatchQueue.main.async {
@@ -79,7 +83,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
             
             do {
                 let resultSet = try JSONDecoder().decode(ItemSearchResultSet.self, from: data)
-                self.itemDataArray.append(contentsOf: resultSet.resultSet.firstObject.result.items)
+                self.itemDataArray.append(contentsOf: resultSet.hits)
             } catch let error {
                 print("## error: \(error)")
             }
@@ -105,6 +109,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         }
         let itemData = itemDataArray[indexPath.row]
         cell.itemTitleLabel.text = itemData.name
+        let number = NSNumber(integerLiteral: itemData.price)
         cell.itemPriceLabel.text = priceFormat.string(from: number)
         cell.itemUrl = itemData.url
         guard let itemImageUrl = itemData.imageInfo.medium else {
@@ -119,7 +124,10 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         }
         let request = URLRequest(url: url)
         let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        let task = session.dataTask(with: request) { [weak self] (data, response, error) in
+            guard let self = self else {
+                return
+            }
             guard error == nil else {
                 return
             }
