@@ -30,13 +30,9 @@ class Result: Codable {
     var items: [ItemData] = [ItemData]()
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let keys = container.allKeys.sorted {
-            Int($0.rawValue)! < Int($1.rawValue)!
-        }
-        for key in keys {
-            let item = try container.decode(ItemData.self, forKey: key)
-            items.append(item)
-        }
+        items = container.allKeys
+            .sorted { Int($0.rawValue)! < Int($1.rawValue)! }
+            .compactMap { try? container.decode(ItemData.self, forKey: $0) }
     }
     
     func encode(to encoder: Encoder) throws {
